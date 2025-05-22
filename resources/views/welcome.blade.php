@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,12 +21,6 @@
                             Dashboard
                         </a>
                     @else
-<a
-    href="{{ route('login') }}"
-    class="inline-block px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200"
->
-    Se connecter
-</a>
 
                         @if (Route::has('register'))
                           <a href="{{ route('register') }}"
