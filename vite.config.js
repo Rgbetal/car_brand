@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
     build: {
-        outDir: "public/build",
+        outDir: "dist",
     },
     plugins: [
         laravel({
