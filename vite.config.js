@@ -6,6 +6,12 @@ export default defineConfig({
     build: {
         outDir: "dist",
     },
+    preview: {
+        host: true,
+        port: process.env.PORT || 4173,
+        // Autoriser le domaine Render
+        allowedHosts: ["car-brand.onrender.com"],
+    },
     plugins: [
         laravel({
             input: ["resources/css/app.css", "resources/js/app.js"],
@@ -13,8 +19,4 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
-    preview: {
-        port: process.env.PORT || 4173,
-        host: true, // Équivaut à 0.0.0.0
-    },
 });
