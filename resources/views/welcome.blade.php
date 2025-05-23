@@ -1,51 +1,70 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
-            <script src="https://cdn.tailwindcss.com"></script>
- 
-    </head>
-    <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
-        <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
-            @if (Route::has('login'))
-                <nav class="flex items-center justify-end gap-4">
-                    @auth
-                        <a
-                            href="{{ url('/dashboard') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
-                        >
-                            Dashboard
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Accueil - Auto Service</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans min-h-screen flex flex-col">
+
+    <header class="bg-white dark:bg-gray-800 shadow">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="{{ url('/') }}" class="text-xl font-bold text-gray-900 dark:text-gray-100">Auto Service</a>
+            <nav class="flex items-center gap-4 text-sm">
+
+                @auth
+                    <a href="{{ url('/dashboard') }}"
+                        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Dashboard</a>
+                    <form method="POST" action="{{ route('logout') }}" class="inline">
+                        @csrf
+                        <button type="submit"
+                            class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">Déconnexion</button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}"
+                        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Connexion</a>
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}"
+                            class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+                            S'inscrire
                         </a>
-                    @else
+                    @endif
+                @endauth
+            </nav>
+        </div>
+    </header>
 
-                        @if (Route::has('register'))
-                          <a href="{{ route('register') }}"
-    class="inline-block px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200">
-    S'inscrire
-</a>
-                        @endif
-                    @endauth
-                </nav>
-            @endif
-        </header>
-   <div class="min-h-screen bg-white dark:bg-[#0a0a0a] text-[#1b1b18] p-6 lg:p-8">
-    <main class="max-w-4xl w-full mx-auto">
-        <div class="text-[13px] leading-[20px] p-6 lg:p-20 bg-white dark:bg-[#161615] dark:text-[#EDEDEC] shadow-[inset_0_0_0_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0_0_0_1px_#fffaed2d] rounded-lg">
-            <h1 class="mb-4 text-xl font-bold">BIENVENUE CHEZ AUTO SERVICE</h1>
-            <p class="mb-4 text-[#706f6c] dark:text-[#A1A09A]">
-                La voiture à tout prix .<br>Nous vous suggérons de commencer ici.
-            </p>
+    <main class="flex-1 flex items-center justify-center px-6">
+        <div
+            class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+
+            <div class="max-w-3xl w-full mx-auto my-6">
+                <img src="{{ asset('images/auto.png') }}" alt="Voiture Auto Service"
+                    class="rounded-lg shadow-lg w-full h-auto object-cover aspect-[4/3]">
+            </div>
+
+            <div class="text-center md:text-left">
+                <h2 class="text-3xl font-bold mb-4">Bienvenue chez Auto Service 🚗</h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-6">
+                    La voiture à tout prix. Découvrez nos services, ajoutez vos marques préférées et explorez toutes les
+                    fonctionnalités disponibles via votre tableau de bord.
+                </p>
+                <a href="{{ url('/dashboard') }}"
+                    class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+                    Accéder au Dashboard
+                </a>
+            </div>
 
         </div>
     </main>
-</div>
 
-        @if (Route::has('login'))
-            <div class="h-14.5 hidden lg:block"></div>
-        @endif
-    </body>
+    <footer class="text-center py-4 text-sm text-gray-500 dark:text-gray-400">
+        &copy; {{ date('Y') }} Auto Service. Tous droits réservés.
+    </footer>
+
+</body>
+
 </html>

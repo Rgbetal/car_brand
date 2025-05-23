@@ -1,9 +1,8 @@
-{{-- resources/views/car_brands/index.blade.php --}}
 <x-layout>
     <div class="max-w-4xl mx-auto mt-10">
         <h1 class="text-2xl font-bold mb-6">Liste des marques</h1>
 
-        @if(session('success'))
+        @if (session('success'))
             <div class="bg-green-100 text-green-800 p-2 mb-4 rounded">
                 {{ session('success') }}
             </div>
@@ -27,8 +26,10 @@
                         <td class="px-4 py-2">{{ $brand->name }}</td>
                         <td class="px-4 py-2">{{ $brand->country }}</td>
                         <td class="px-4 py-2">
-                            <a href="{{ route('car-brands.edit', $brand) }}" class="text-blue-600 hover:underline">Modifier</a>
-                            <form action="{{ route('car-brands.destroy', $brand) }}" method="POST" class="inline-block ml-2" onsubmit="return confirm('Supprimer cette marque ?');">
+                            <a href="{{ route('car-brands.edit', $brand) }}"
+                                class="text-blue-600 hover:underline">Modifier</a>
+                            <form action="{{ route('car-brands.destroy', $brand) }}" method="POST"
+                                class="inline-block ml-2" onsubmit="return confirm('Supprimer cette marque ?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-600 hover:underline">Supprimer</button>

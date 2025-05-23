@@ -17,20 +17,20 @@ class AuthController extends Controller
 public function register(Request $request)
 {
     $validated = $request->validate([
-        'name' => 'required|string|max:255',
+        'full_name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users',
         'password' => 'required|string|min:8|confirmed',
     ]);
 
     $user = User::create([
-        'name' => $validated['name'],
+        'full_name' => $validated['full_name'],
         'email' => $validated['email'],
         'password' => Hash::make($validated['password']),
     ]);
 
-    Auth::login($user); // Connexion automatique après inscription
+    Auth::login($user); 
 
-    return redirect()->route('dashboard'); // ✅ Redirection vers la page souhaitée
+    return redirect()->route('dashboard');
 }
 
     public function showLoginForm()
@@ -48,7 +48,7 @@ public function register(Request $request)
     if (Auth::attempt($credentials)) {
         $request->session()->regenerate();
 
-        return redirect()->intended('/car-brands/create'); 
+        return redirect()->intended('/dashboard');
     
     }
 
