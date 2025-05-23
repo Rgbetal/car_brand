@@ -31,6 +31,9 @@ RUN composer install --no-dev --optimize-autoloader
 # Set permissions
 RUN chown -R www-data:www-data /var/www
 
+# Fix permissions
+RUN chmod -R 775 storage bootstrap/cache && chown -R www-data:www-data storage bootstrap/cache
+
 # Expose port
 EXPOSE 8080
 
