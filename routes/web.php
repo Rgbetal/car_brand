@@ -31,3 +31,12 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/migrate', function () {
+    try {
+        Artisan::call('migrate', ['--force' => true]);
+        return 'Migration exécutée ✅';
+    } catch (\Exception $e) {
+        return 'Erreur lors de la migration : ' . $e->getMessage();
+    }
+});
