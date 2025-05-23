@@ -35,4 +35,4 @@ RUN chown -R www-data:www-data /var/www
 EXPOSE 8080
 
 # Run Laravel
-CMD php artisan serve --host=0.0.0.0 --port=8080
+CMD php -S 0.0.0.0:8080 -t public
