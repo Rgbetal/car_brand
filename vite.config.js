@@ -13,4 +13,8 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
+    preview: {
+        port: process.env.PORT || 4173,
+        host: true, // Équivaut à 0.0.0.0
+    },
 });
